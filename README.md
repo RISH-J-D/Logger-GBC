@@ -1,4 +1,4 @@
-# Struzon Device Usage Monitoring
+# Device Usage Monitoring
 
 A complete, self-hosted system that monitors employee device usage:
 
@@ -144,14 +144,14 @@ The icon, app id and targets are already configured in `agent/package.json`.
 ```bash
 cd agent
 npm run dist:win
-# -> agent/release/Struzon Monitor Setup 1.0.0.exe
+# -> agent/release/Monitor Setup 1.0.0.exe
 ```
 
 **Linux `.deb`:**
 ```bash
 cd agent
 npm run dist:linux
-# -> agent/release/struzon-monitor-agent_1.0.0_amd64.deb
+# -> agent/release/monitor-agent_1.0.0_amd64.deb
 ```
 
 > Building the **Windows** `.exe` on Linux requires `wine`
@@ -160,15 +160,15 @@ npm run dist:linux
 
 ### Install
 
-**Windows:** double-click `Struzon Monitor Setup 1.0.0.exe` → choose folder →
+**Windows:** double-click `Monitor Setup 1.0.0.exe` → choose folder →
 Finish. Installs to Program Files, adds Start-menu + desktop shortcuts.
 
 **Linux (Debian/Ubuntu):**
 ```bash
-sudo apt install ./struzon-monitor-agent_1.0.0_amd64.deb
+sudo apt install ./monitor-agent_1.0.0_amd64.deb
 # launch (as your normal user, NOT sudo):
-struzon-monitor-agent
-#   ...or launch "Struzon Monitor" from the applications menu.
+monitor-agent
+#   ...or launch "Monitor" from the applications menu.
 ```
 
 ### Point the agent at your server
@@ -192,7 +192,7 @@ The agent registers itself to **launch automatically when the user logs into the
 computer** (no manual step needed):
 
 - **Windows:** adds a per-user login item (registry `Run` key) on first launch.
-- **Linux:** writes `~/.config/autostart/struzon-monitor-agent.desktop` on first
+- **Linux:** writes `~/.config/autostart/monitor-agent.desktop` on first
   launch.
 
 So after install, the sign-in window appears on every OS login by itself.
@@ -248,7 +248,7 @@ failed` / `SUID sandbox`.** Ubuntu 24.04+ restricts unprivileged user namespaces
 Chromium sandbox. The `.deb` already works around this (it launches with
 `--no-sandbox` via a wrapper). If you hit it running an older build or from
 source, launch with the flag:
-`struzon-monitor-agent --no-sandbox`  (or `npm start`, which includes it).
+`monitor-agent --no-sandbox`  (or `npm start`, which includes it).
 
 ## Limitations / notes
 
