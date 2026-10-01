@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'" />
+  <title>Struzon Monitor — Sign in</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login">
+    <form class="card" id="form">
+      <div class="brand"><span class="logo">🔒</span> Struzon Monitor</div>
+      <h1>This device is locked</h1>
+      <p class="sub muted">Sign in with your <b>Employee ID</b> or device username and password to unlock the computer. The machine stays locked and your login time is recorded.</p>
+
+      <label>Employee ID / Username
+        <input id="username" autocomplete="username" autofocus required />
+      </label>
+      <label>Password
+        <input id="password" type="password" autocomplete="current-password" required />
+      </label>
+
+      <div id="change-password-section" style="display:none; border-top: 1px solid #ccc; padding-top: 10px; margin-top: 10px;">
+        <p class="sub muted"><b>First Time Login:</b> You must change your password.</p>
+        <label>New Password
+          <input id="new-password" type="password" />
+        </label>
+        <label>Confirm Password
+          <input id="confirm-password" type="password" />
+        </label>
+      </div>
+
+      <label id="project-label">What are you working on?
+        <input id="project" list="project-list" autocomplete="off" required
+               placeholder="Type to search your project / task…" />
+        <datalist id="project-list"></datalist>
+      </label>
+
+      <button type="submit" id="submit">Sign in &amp; start monitoring</button>
+      <div class="error" id="error"></div>
+
+      <button type="button" class="link" id="toggle-server">Server settings</button>
+      <label class="server-row" id="server-row">Central server URL
+        <input id="server" placeholder="http://server-ip:4000" />
+      </label>
+
+      <p class="muted" id="ctx" style="font-size:12px;text-align:center"></p>
+    </form>
+  </div>
+  <script src="login.js"></script>
+</body>
+</html>

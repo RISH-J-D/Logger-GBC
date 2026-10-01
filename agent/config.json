@@ -1,0 +1,7 @@
+{
+  "serverUrl": "http://localhost:4000",
+  "idleTimeoutSeconds": 300,
+  "heartbeatSeconds": 30,
+  "pollSeconds": 5,
+  "agentKey": ""
+}

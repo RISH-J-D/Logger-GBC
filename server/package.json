@@ -1,0 +1,23 @@
+{
+  "name": "device-logger-server",
+  "version": "1.0.0",
+  "description": "Central server + admin portal for Struzon device usage monitoring",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "migrate": "node scripts/migrate.js",
+    "import-employees": "node scripts/import-employees.js",
+    "link-hierarchy": "node scripts/link-hierarchy.js",
+    "import-projects": "node scripts/import-projects.js",
+    "setup": "node scripts/migrate.js && node scripts/import-employees.js && node scripts/link-hierarchy.js && node scripts/import-projects.js",
+    "bootstrap": "npm install && node scripts/ensure-env.js && npm run setup && npm start"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.12.0"
+  }
+}

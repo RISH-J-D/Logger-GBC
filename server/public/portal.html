@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Struzon · Employee Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login -->
+  <div id="login-view" class="login-wrap">
+    <form id="login-form" class="login-card">
+      <div class="brand"><span class="logo">▦</span> Struzon Employee Portal</div>
+      <h1>Sign in</h1>
+      <p class="muted">View your work hours and production time.</p>
+      <label>Employee ID / Username<input id="login-user" autocomplete="username" required /></label>
+      <label>Password<input id="login-pass" type="password" autocomplete="current-password" required /></label>
+      <button type="submit">Sign in</button>
+      <div id="login-error" class="error"></div>
+      <p class="muted" style="font-size:12px;text-align:center">Admin? Use the <a href="/">admin portal</a>.</p>
+    </form>
+  </div>
+
+  <!-- App -->
+  <div id="app-view" class="hidden">
+    <header class="topbar">
+      <div class="brand"><span class="logo">▦</span> Employee Portal</div>
+      <div class="spacer"></div>
+      <span id="who" class="muted"></span>
+      <span id="role-badge" class="status-chip"></span>
+      <button id="logout-btn" class="ghost">Sign out</button>
+    </header>
+
+    <main style="padding:18px 20px 40px; max-width:1200px; margin:0 auto;">
+      <!-- My summary -->
+      <section class="card" style="background:var(--panel)">
+        <div class="card-head"><h3 id="my-name">My work hours</h3>
+          <div class="controls" style="margin:0">
+            <label>From <input type="date" id="from-date" /></label>
+            <label>To <input type="date" id="to-date" /></label>
+            <button id="apply" class="primary">Apply</button>
+          </div>
+        </div>
+        <div id="my-stats" class="stats" style="padding:0; grid-template-columns:repeat(4,1fr)"></div>
+        <div style="margin-top:6px"><button id="my-detail-btn" class="ghost">View my sessions &amp; daily hours →</button></div>
+      </section>
+
+      <!-- Team / org (TL + RM only) -->
+      <section id="team-section" class="card hidden" style="background:var(--panel)">
+        <div class="card-head">
+          <h3 id="team-title">My team</h3>
+          <input id="team-search" placeholder="Search name / Emp ID / team…" style="width:280px" />
+        </div>
+        <div id="team-groups"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Detail modal: a person's daily hours + sessions -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card" style="width:min(820px,94vw)">
+      <div class="card-head">
+        <h3 id="m-title">Details</h3>
+        <button id="m-close" class="ghost">✕</button>
+      </div>
+      <div id="m-stats" class="stats" style="padding:0 0 12px; grid-template-columns:repeat(4,1fr)"></div>
+      <h4 style="margin:8px 0">Daily hours</h4>
+      <table class="data"><thead><tr><th>Day</th><th>Sessions</th><th>Logged in</th><th>Active</th><th>Idle</th></tr></thead>
+        <tbody id="m-days"></tbody></table>
+      <h4 style="margin:16px 0 8px">Sessions</h4>
+      <table class="data"><thead><tr><th>Login</th><th>Logout</th><th>Logged in</th><th>Active</th><th>Project</th><th>Logout reason</th></tr></thead>
+        <tbody id="m-sessions"></tbody></table>
+    </div>
+  </div>
+
+  <script src="portal.js"></script>
+</body>
+</html>

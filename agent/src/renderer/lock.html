@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'" />
+  <title>Locked</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="lock">
+    <div class="lock-card">
+      <div class="big">🔒</div>
+      <h1>Session locked</h1>
+      <p class="who muted">Locked due to <b>5 minutes</b> of inactivity.<br />Re-authenticate to continue monitoring.</p>
+      <div class="who" id="who"></div>
+      <form id="form">
+        <label>Employee ID / Username
+          <input id="username" autocomplete="off" autofocus required />
+        </label>
+        <label>Password
+          <input id="password" type="password" autocomplete="off" required />
+        </label>
+        <button type="submit" id="submit">Unlock &amp; resume</button>
+        <div class="error" id="error"></div>
+      </form>
+      <div class="clock" id="clock"></div>
+    </div>
+  </div>
+  <script src="lock.js"></script>
+</body>
+</html>

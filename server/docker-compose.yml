@@ -1,0 +1,18 @@
+# Convenience Postgres for the central server. Run:  docker compose up -d
+# Then point server/.env DATABASE_URL at it (port 5432 by default).
+services:
+  db:
+    image: postgres:16
+    container_name: device-logger-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: device_logger
+    ports:
+      - "5432:5432"
+    volumes:
+      - device_logger_data:/var/lib/postgresql/data
+
+volumes:
+  device_logger_data:

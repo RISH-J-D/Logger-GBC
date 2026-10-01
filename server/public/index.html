@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Struzon · Device Monitoring Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ── Login screen ──────────────────────────────────────────────────── -->
+  <div id="login-view" class="login-wrap">
+    <form id="login-form" class="login-card">
+      <div class="brand"><span class="logo">▦</span> Struzon Monitoring</div>
+      <h1>Admin Portal</h1>
+      <p class="muted">Sign in to monitor device usage logs.</p>
+      <label>Username<input id="login-user" autocomplete="username" required /></label>
+      <label>Password<input id="login-pass" type="password" autocomplete="current-password" required /></label>
+      <button type="submit">Sign in</button>
+      <div id="login-error" class="error"></div>
+    </form>
+  </div>
+
+  <!-- ── Main app ──────────────────────────────────────────────────────── -->
+  <div id="app-view" class="hidden">
+    <header class="topbar">
+      <div class="brand"><span class="logo">▦</span> Struzon Monitoring</div>
+      <div class="spacer"></div>
+      <span id="who" class="muted"></span>
+      <button id="logout-btn" class="ghost">Sign out</button>
+    </header>
+
+    <section class="stats" id="stats"></section>
+
+    <main class="layout">
+      <!-- Left: employee directory + search -->
+      <aside class="sidebar">
+        <div class="search-box">
+          <input id="emp-search" placeholder="Search name, Emp ID, team…" />
+        </div>
+        <div id="emp-list" class="emp-list"></div>
+      </aside>
+
+      <!-- Right: selected employee detail -->
+      <section class="detail">
+        <div id="detail-empty" class="empty">
+          <h2>Select an employee</h2>
+          <p class="muted">Pick someone on the left to see their login sessions, idle locks and re-authentications.</p>
+        </div>
+
+        <div id="detail-content" class="hidden">
+          <div class="emp-header">
+            <div>
+              <h2 id="d-name"></h2>
+              <div id="d-sub" class="muted"></div>
+            </div>
+            <div class="emp-header-right">
+              <div id="d-status" class="status-chip"></div>
+              <button id="monitor-toggle" class="primary">Stop monitoring</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <label>From <input type="date" id="from-date" /></label>
+            <label>To <input type="date" id="to-date" /></label>
+            <button id="apply-range" class="primary">Apply</button>
+            <button id="clear-range" class="ghost">Clear</button>
+          </div>
+
+          <!-- Calendar -->
+          <div class="card">
+            <div class="card-head">
+              <h3>Activity calendar</h3>
+              <div class="cal-nav">
+                <button id="cal-prev" class="ghost">‹</button>
+                <span id="cal-label"></span>
+                <button id="cal-next" class="ghost">›</button>
+              </div>
+            </div>
+            <div id="calendar" class="calendar"></div>
+            <div class="legend">
+              <span><i class="dot d0"></i>none</span>
+              <span><i class="dot d1"></i>low</span>
+              <span><i class="dot d2"></i>medium</span>
+              <span><i class="dot d3"></i>high</span>
+              <span class="muted">· click a day to filter sessions</span>
+            </div>
+          </div>
+
+          <!-- Sessions -->
+          <div class="card">
+            <div class="card-head"><h3>Login sessions</h3><span id="sess-count" class="muted"></span></div>
+            <table class="data">
+              <thead><tr>
+                <th>Login</th><th>Logout</th><th>Duration</th><th>Host</th><th>Idle locks</th><th>Status</th><th></th>
+              </tr></thead>
+              <tbody id="sessions-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Event-trail modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="card-head">
+        <h3>Session event trail</h3>
+        <button id="modal-close" class="ghost">✕</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

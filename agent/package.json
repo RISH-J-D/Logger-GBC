@@ -1,0 +1,50 @@
+{
+  "name": "struzon-monitor-agent",
+  "productName": "Struzon Monitor",
+  "version": "1.0.0",
+  "description": "Struzon device-usage monitoring agent (login tracking + idle lock)",
+  "author": "Struzon <admin@struzon.co.in>",
+  "homepage": "https://struzon.co.in",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron . --no-sandbox",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win nsis",
+    "dist:linux": "electron-builder --linux deb"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "in.co.struzon.monitor",
+    "productName": "Struzon Monitor",
+    "copyright": "Copyright © Struzon",
+    "afterPack": "build/afterPack.js",
+    "files": ["src/**/*", "!**/*.map"],
+    "extraResources": [{ "from": "config.json", "to": "config.json" }],
+    "directories": { "output": "release", "buildResources": "build" },
+    "win": {
+      "target": ["nsis"],
+      "icon": "logo_light/1.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Struzon Monitor"
+    },
+    "linux": {
+      "target": ["deb"],
+      "icon": "build/icon.png",
+      "category": "Utility",
+      "maintainer": "Struzon <admin@struzon.co.in>",
+      "description": "Struzon device-usage monitoring agent"
+    },
+    "deb": {
+      "depends": ["libgtk-3-0", "libnotify4", "libnss3", "libxss1", "libxtst6", "xdg-utils", "libatspi2.0-0", "libuuid1", "libsecret-1-0"]
+    }
+  }
+}
